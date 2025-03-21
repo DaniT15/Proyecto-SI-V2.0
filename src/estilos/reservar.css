@@ -1,0 +1,70 @@
+.div-reservar {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 20px;
+}
+.div-reservar h2 {
+    color: #000000;
+}
+
+.reservar-imagen {
+    max-width: 400px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+    background-color: aliceblue;
+
+}
+
+.reservar-info {
+    background-color: aliceblue;
+    flex: 1;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.reservar-info h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: #1d1d1d;
+}
+
+.reservar-info p {
+    font-size: 1em;
+    line-height: 1.6;
+    margin-bottom: 8px;
+    color: #000000;
+}
+
+.reservar-calendario {
+    background-color: aliceblue;
+    border: #000000;
+    border-width: 2px;
+    border-radius: 15px;
+}
+.event-details{
+    margin-bottom: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.boton-de-reservar{
+    width: 30%;
+}
+
+
+@media (max-width: 768px) {
+    .div-reservar {
+        flex-direction: column;
+    }
+
+    .reservar-imagen {
+        max-width: 100%;
+    }
+}

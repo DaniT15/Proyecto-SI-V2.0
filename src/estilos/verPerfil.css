@@ -1,0 +1,63 @@
+.perfil-container {
+    width: 450px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.perfil-foto {
+    width: 150px; /* Ajusta el tamaño de la imagen */
+    height: 150px;
+    border-radius: 50%; /* Hace que la imagen sea redonda */
+    object-fit: cover; /* Asegura que la imagen no se deforme */
+    margin-bottom: 20px; /* Espacio debajo de la foto */
+  }
+  
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+}
+
+.info {
+    text-align: left;
+    width: 80%;
+    margin: 0;
+    padding: 0 0 0 1rem;
+}
+
+.dato {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.dato label {
+    font-weight: bold;
+    display: block;
+}
+
+.editar-perfil {
+    transition: background-color 0.3s ease;
+    background-color: #dea63f;
+}
+
+.editar-perfil:hover {
+    background-color: #c8912a;
+}
+
+.cerrar-sesion {
+    transition: background-color 0.3s ease;
+    background-color: #de3f3f;
+}
+
+.cerrar-sesion:hover {
+    background-color: #aa1c1c;
+}

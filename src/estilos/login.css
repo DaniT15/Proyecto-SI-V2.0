@@ -1,0 +1,94 @@
+.margen{
+  padding: 10px;
+  background-color: #fad9ab;
+  display: flex;
+}
+
+.login-container {
+  border-width: 10px;
+  width: 350px;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+input {
+  width: 90%;
+  padding: 8px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+  color: white;
+  border-radius: 4px;
+  transition: opacity 0.3s;
+}
+
+button:disabled {
+  background-color: #bbb;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.google-btn {
+  background-color: #db4437;
+  font-weight: bold;
+}
+
+.facebook-btn {
+  background-color: #1877f2;
+  font-weight: bold;
+}
+
+.registrarse-btn {
+  background-color: #dea63f;
+  font-weight: bold;
+}
+
+.error {
+  color: red;
+  font-size: 0.9em;
+  margin: 10px 0;
+}
+
+@media (max-width: 400px) {
+  .login-container {
+    width: 90%;
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 1.3em;
+  }
+
+  input {
+    font-size: 0.9em;
+  }
+
+  button {
+    font-size: 0.9em;
+  }
+}

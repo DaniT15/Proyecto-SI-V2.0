@@ -1,0 +1,90 @@
+.rutas-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    min-height: 70vh;
+    padding: 3vh 4vw;
+    background-color: antiquewhite;
+}
+
+.titulo-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80vw;
+    padding: 2vh 0;
+}
+
+.filtrar-div {
+    background-color: #D9D9D9;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 1vh 1vw;
+    border-radius: 35px;
+}
+
+.filtrado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 0 3vw;
+    border-left: 2px black;
+}
+
+.separador {
+    margin: 0 0 0 3vw;
+}
+
+.flecha {
+    height: 6vh;
+}
+
+.ruta {
+    border: 1px solid #606060;
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.5s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+.ruta:hover {
+    border: 1.5px solid #3a3a3a;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+}
+
+.ruta-imagen {
+    width: 200px;
+    height: 200px;
+    border-radius: 15px;
+    object-fit: cover;
+    margin-right: 1rem;
+}
+
+.ruta-info {
+    flex: 1;
+}
+
+.div-rutas-boton-reserva {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+}
+
+.rutas-boton-reserva {
+    width: 40%;
+    align-self: center;
+    justify-self: center;
+}

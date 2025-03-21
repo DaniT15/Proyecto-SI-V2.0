@@ -1,0 +1,161 @@
+@font-face {
+    font-family: 'Myanmar Khyay';
+    src: url('ruta/a/MyanmarKhyay.ttf') format('truetype');
+    /* Updated path to the correct location */
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Myanmar Khyay', sans-serif;
+}
+
+.landing-page {
+    height: auto;
+    width: 100vw;
+}
+
+.container-avila1 {
+    width: 100vw;
+    height: 86vh;
+}
+
+.avila1 {
+    object-fit: cover;
+    width: 100vw;
+    height: 86vh;
+}
+
+.rutas {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cartas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    width: auto;
+    padding: 0 0 2vh 0;
+    text-align: center;
+}
+
+.titulo-rutas {
+    color: black;
+    height: 10vh;
+    padding: 3vh 0 3vh 0;
+
+}
+
+.carta {
+    height: auto;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 15%;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    padding: 2rem;
+}
+
+
+.carta:hover {
+    transform: scale(1.05);
+}
+
+.carta:active {
+    opacity: 0.9;
+    ;
+}
+
+.img-carta {
+    width: 10rem;
+}
+
+.div-boton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+    width: 100vw;
+}
+
+.boton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 40vw;
+    background-color: #FFB974;
+    color: black;
+    border-radius: 37px;
+    text-decoration: none;
+}
+
+.boton:hover {
+    background-color: #e59d55;
+}
+
+.div-comparte {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: 100vw;
+    background: #FFD8B1;
+
+}
+
+.titulo-comparte {
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3vh 0;
+}
+
+.compartidos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.compartido {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 93px;
+    background: #ffffff;
+    width: 62vw;
+    padding: 2vh 0;
+    height: auto;
+    margin: 0 0 3vh 0;
+}
+
+.compartido h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.compartido p {
+    font-family: 'Myanmar Khyay', sans-serif;
+    font-size: 1rem;
+    padding-right: 5px;
+}
+
+
+.img-comparte {
+    object-fit: cover;
+    border-radius: 50%;
+    height: auto;
+    width: auto;
+    max-width: 20wh;
+    max-height: 20vh;
+    margin: 0 2vw 0 2vw;
+}

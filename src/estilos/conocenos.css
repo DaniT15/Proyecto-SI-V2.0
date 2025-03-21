@@ -1,0 +1,46 @@
+.bg {
+    background-image: url('../assets/conocenos-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 86vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 8vh
+}
+.div-info {
+    height: auto;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.info {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 85vw;
+    justify-content: center;
+    margin: 5vh 0 0 0;
+    padding: 6vh 4vw;
+    border-radius: 38px;
+}
+.bloque1 {
+    background-color: #EFF0A6;
+    align-items: self-start;
+}
+.bloque2 {
+    background-color: #F0D5A6;
+    align-items: self-end;
+}
+.bloque3 {
+    background-color: #F0BDA6;
+    align-items: self-start;
+}
+.logo-conocenos {
+    margin: 5vh 0;
+}

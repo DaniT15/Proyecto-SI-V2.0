@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.container button {
+    margin-bottom: 10px;
+}
+
+.container p {
+    text-align: left;
+    font-weight: normal;
+}
+
+.botones-calendario {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.botones-calendario button {
+    margin-right: 10px;
+}
+
+.botones-calendario button:last-child {
+    margin-right: 0;
+}
