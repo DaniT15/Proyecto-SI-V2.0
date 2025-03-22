@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React, { useContext } from 'react';
 import { UserContext } from "./contextos/UserContext";
 
-
 import LandingPage from './paginas/LandingPage';
 import Conocenos from './paginas/Conocenos';
 import Header from './componentes/Header';
@@ -23,10 +22,11 @@ import RegistrarRuta from './paginas/RegistrarRuta';
 import Pagos from './paginas/Pagos';
 import Comentarios from './paginas/Comentarios';
 import Reservar from './paginas/Reservar';
+import Guia from './paginas/guia'; // Importa el componente Guia
 
 export default function App() {
-  const profileContext = useContext(UserContext)
-  const { logged, profile } = profileContext
+  const profileContext = useContext(UserContext);
+  const { logged, profile } = profileContext;
   return (
     <Router>
       <Header />
@@ -45,9 +45,10 @@ export default function App() {
         <Route path="/editarRuta" element={<EditarActividad />} />
         <Route path="/crearActividad" element={<CrearActividad />} />
         <Route path="/registrarRuta" element={<RegistrarRuta />} />
-        <Route path="/pagos" element={logged?<Pagos />:<Login/>} />
+        <Route path="/pagos" element={logged ? <Pagos /> : <Login />} />
         <Route path="/comentarios" element={<Comentarios />} />
         <Route path="/reservar" element={<Reservar />} />
+        <Route path="/guia" element={<Guia />} /> 
       </Routes>
       <Footer />
     </Router>

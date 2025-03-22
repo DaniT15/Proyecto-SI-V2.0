@@ -7,9 +7,10 @@ import { getAuth,
 } from "firebase/auth";
 
 import { getFirestore, 
-  doc, getDoc, setDoc, updateDoc, collection, getDocs } from "firebase/firestore";
+  doc, getDoc, setDoc, updateDoc, collection, getDocs, query, where // Importa query y where
+} from "firebase/firestore";
 
-import { getStorage } from "firebase/storage";  // Importar Storage
+import { getStorage } from "firebase/storage"; // Importar Storage
 
 const firebaseConfig = {
   apiKey: "AIzaSyC_KeAHTwWQrC1P89he6SF_bXE94kzOZA4",
@@ -24,14 +25,26 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app); // Firestore
-const storage = getStorage(app);  // Storage
+const storage = getStorage(app); // Storage
 
 // Proveedores de autenticación
 const googleProvider = new GoogleAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
 
-export { auth, googleProvider, facebookProvider, signInWithEmailAndPassword, signInWithPopup, doc, 
-  getDoc, setDoc, updateDoc, collection, getDocs,
+export { 
+  auth, 
+  googleProvider, 
+  facebookProvider, 
+  signInWithEmailAndPassword, 
+  signInWithPopup, 
+  doc, 
+  getDoc, 
+  setDoc, 
+  updateDoc, 
+  collection, 
+  getDocs,
+  query, // Exporta query
+  where, // Exporta where
   db, // Exportar Firestore
   storage // Exportar Storage
 };

@@ -1,33 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import Ruta from '../componentes/Ruta';
-import '../estilos/guia.css'; // Importing the guia.css file
-import { db, collection, getDocs } from '../config/firebaseConfig'; // Import Firestore functions
+import '../estilos/guia.css';
+import { db, collection, getDocs, query, where } from '../config/firebaseConfig';
+import { auth } from '../config/firebaseConfig'; //Importamos auth para obtener el usuario actual.
 
 export default function Guia() {
-    const [rutas, setRutas] = useState([]);
+  const [actividades, setActividades] = useState([]);
+  const guiaId = auth.currentUser.uid; //obtenemos el id del usuario actual
 
-    useEffect(() => {
-        // Fetch the routes assigned by the admin from Firestore
-        const fetchRutas = async () => {
-            const rutasCollection = collection(db, 'rutas'); // Reference to the 'rutas' collection
-            const rutasSnapshot = await getDocs(rutasCollection);
-            const fetchedRutas = rutasSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })); // Map to get data
-            setRutas(fetchedRutas);
-        };
+  useEffect(() => {
+    const fetchActividades = async () => {
+      if (guiaId) { //condicional para verificar que el usuario esta logeado.
+        const actividadesCollection = collection(db, 'actividades');
+        const q = query(actividadesCollection, where('guiaId', '==', guiaId)); // Filtramos por guiaId
+        const actividadesSnapshot = await getDocs(q);
+        const fetchedActividades = actividadesSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+        setActividades(fetchedActividades);
+      } else {
+        console.log("Usuario no logeado");
+      }
+    };
 
-        fetchRutas();
-    }, []);
+    fetchActividades();
+  }, [guiaId]); //dependencia de guiaId para que se actualice cuando cambia el usuario.
 
-    return (
-        <div className="rutas-div">
-            <h1 className="titulo-rutas">Rutas Asignadas</h1>
-            {rutas.length === 0 ? (
-                <p>No hay rutas asignadas.</p> // Adding a message when no routes are available
-            ) : (
-                rutas.map((ruta, index) => (
-                    <Ruta key={index} {...ruta} />
-                ))
-            )}
-        </div>
-    );
+  return (
+    <div className="rutas-div1">
+      <h1 className="titulo-rutas1">Rutas Asignadas</h1>
+      {actividades.length === 0 ? (
+        <p>No hay rutas asignadas.</p>
+      ) : (
+        actividades.map((actividad, index) => (
+          <Ruta key={index} {...actividad} />
+        ))
+      )}
+    </div>
+  );
 }

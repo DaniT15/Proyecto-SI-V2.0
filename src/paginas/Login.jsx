@@ -22,11 +22,11 @@ export default function Login() {
     setLoading(true);
     setError("");
 
-    if (!validateEmailDomain(email)) {
+    /*if (!validateEmailDomain(email)) {
       setError('El correo electrónico debe pertenecer a @correo.unimet.edu.ve ❌');
       setLoading(false);
       return;
-    }
+    }*/
 
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
@@ -36,9 +36,9 @@ export default function Login() {
       const userDocSnap = await getDoc(userDocRef);
       if (userDocSnap.exists()) {
         const userData = userDocSnap.data();
-        if (userData.tipo === "estudiante" || userData.tipo === "guia") {
+        if (userData.tipo === "guia") {
           alert("Inicio de sesión exitoso ✅");
-          navigate("/");
+          navigate("/guia");
         } else if (userData.tipo === "administrador") {
           alert("Inicio de sesión exitoso ✅");
           navigate("/menuAdmin");

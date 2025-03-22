@@ -1,20 +1,26 @@
-import '../estilos/verPerfil.css'
+import '../estilos/verPerfil.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from "../contextos/UserContext";
 import { useContext } from 'react';
 import { getAuth, signOut } from "firebase/auth";
 import { app } from "../config/firebaseConfig";
-import userlogo from "../assets/userlogo.png"
+import userlogo from "../assets/userlogo.png";
 
-const auth = getAuth(app)
+const auth = getAuth(app);
 
 export default function VerPerfil() {
-    const contextUser = useContext(UserContext)
-    const { user, setUser, profile, logged } = contextUser
+    const contextUser = useContext(UserContext);
+    const { user, setUser, profile, logged } = contextUser;
+    const navigate = useNavigate();
 
     const handleLogout = async () => {
         await signOut(auth);
-    }
+    };
+
+    // Función para verificar si el usuario es un guía
+    const esGuia = () => {
+        return profile?.tipo === "guia"; // Asegúrate de que el rol se almacene como "guia" en tu base de datos
+    };
 
     return (
         <div className="perfil-container">
@@ -36,6 +42,14 @@ export default function VerPerfil() {
                     <p>{profile?.email}</p>
                 </div>
             </div>
+
+            {/* Botón condicional para guías */}
+            {esGuia() && (
+                <button className="ver-actividades" onClick={() => navigate("/guia")}>
+                    Ver Actividades
+                </button>
+            )}
+
             <Link to="/editarPerfil">
                 <button className="editar-perfil">
                     Editar Perfil
@@ -47,5 +61,5 @@ export default function VerPerfil() {
                 </button>
             </Link>
         </div>
-    )
+    );
 }
