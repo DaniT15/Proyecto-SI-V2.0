@@ -23,6 +23,7 @@ import Pagos from './paginas/Pagos';
 import Comentarios from './paginas/Comentarios';
 import Reservar from './paginas/Reservar';
 import Guia from './paginas/guia'; // Importa el componente Guia
+import Detalles from './paginas/Detalles';
 
 export default function App() {
   const profileContext = useContext(UserContext);
@@ -47,7 +48,9 @@ export default function App() {
         <Route path="/registrarRuta" element={<RegistrarRuta />} />
         <Route path="/pagos" element={logged ? <Pagos /> : <Login />} />
         <Route path="/comentarios" element={<Comentarios />} />
+        <Route path="/detalles" element={<Detalles />} />
         <Route path="/reservar" element={<Reservar />} />
+
         <Route path="/guia" element={<Guia />} /> 
       </Routes>
       <Footer />
