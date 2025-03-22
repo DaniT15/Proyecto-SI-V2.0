@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../estilos/registrarse.css'
+import '../estilos/registrarse.css';
 import { useNavigate, Link } from 'react-router-dom';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, app } from '../config/firebaseConfig';
@@ -13,7 +13,11 @@ export default function Register() {
   const [error, setError] = useState('');
   const [name, setName] = useState('');
   const navigate = useNavigate();
-  const db = getFirestore(app)
+  const db = getFirestore(app);
+
+  const validateEmailDomain = (email) => {
+    return email.endsWith('@correo.unimet.edu.ve');
+  };
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -26,32 +30,32 @@ export default function Register() {
       return;
     }
 
+    if (!validateEmailDomain(email)) {
+      setError('El correo electrónico debe pertenecer a @correo.unimet.edu.ve ❌');
+      setLoading(false);
+      return;
+    }
+
     try {
       const nombreRegistrado = await createUserWithEmailAndPassword(auth, email, password);
-      await setDoc(doc(db, "users", nombreRegistrado.user.uid), {
+      await setDoc(doc(db, 'users', nombreRegistrado.user.uid), {
         email: email,
         uid: nombreRegistrado.user.uid,
         name: name,
-        tipo: "estudiante",
-        imagen:"",
-        telefono:""
-      })
+        tipo: 'estudiante',
+        imagen: '',
+        telefono: '',
+      });
       alert('Registro exitoso ✅');
 
       navigate('/');
     } catch (err) {
-      console.log(err)
+      console.log(err);
       setError('Error al registrar el usuario ❌');
     }
 
     setLoading(false);
   };
-
-
-
-
-
-
 
   return (
     <div className="margen">
@@ -102,9 +106,7 @@ export default function Register() {
         </form>
 
         <Link to="/login">
-          <button className="login-btn">
-            Iniciar Sesión
-          </button>
+          <button className="login-btn">Iniciar Sesión</button>
         </Link>
       </div>
     </div>

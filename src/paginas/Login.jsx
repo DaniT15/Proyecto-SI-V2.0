@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { auth, googleProvider, facebookProvider, signInWithEmailAndPassword, signInWithPopup } from "../config/firebaseConfig";
 import "../estilos/login.css";
-import { getFirestore, doc, getDoc } from "firebase/firestore"; 
+import { getFirestore, doc, getDoc } from "firebase/firestore";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -11,12 +11,22 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const db = getFirestore()
+  const db = getFirestore();
+
+  const validateEmailDomain = (email) => {
+    return email.endsWith('@correo.unimet.edu.ve');
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError("");
+
+    /*if (!validateEmailDomain(email)) {
+      setError('El correo electrónico debe pertenecer a @correo.unimet.edu.ve ❌');
+      setLoading(false);
+      return;
+    }*/
 
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
@@ -26,21 +36,21 @@ export default function Login() {
       const userDocSnap = await getDoc(userDocRef);
       if (userDocSnap.exists()) {
         const userData = userDocSnap.data();
-        if (userData.tipo === "estudiante" || userData.tipo === "guia") { 
+        if (userData.tipo === "guia") {
           alert("Inicio de sesión exitoso ✅");
-          navigate("/");
-        } else if (userData.tipo === "administrador") { 
+          navigate("/guia");
+        } else if (userData.tipo === "administrador") {
           alert("Inicio de sesión exitoso ✅");
           navigate("/menuAdmin");
         } else {
           alert("Inicio de sesión exitoso ✅");
-          navigate("/"); 
+          navigate("/");
         }
       } else {
         setError("Usuario no encontrado ❌");
       }
     } catch (err) {
-      console.log(err)
+      console.log(err);
       setError("Correo o contraseña incorrectos ❌");
     }
 
@@ -53,7 +63,7 @@ export default function Login() {
 
     try {
       const userCredential = await signInWithPopup(auth, googleProvider);
-      const user = userCredential.user; 
+      const user = userCredential.user;
 
       const userDocRef = doc(db, "users", user.uid);
       const userDocSnap = await getDoc(userDocRef);
@@ -62,14 +72,14 @@ export default function Login() {
         const userData = userDocSnap.data();
         if (userData.tipo === "estudiante" || userData.tipo === "guia") {
           alert("Inicio de sesión con Google exitoso ✅");
-          console.log(userData.tipo)
+          console.log(userData.tipo);
           navigate("/");
-        } else if (userData.tipo === "administrador") { 
+        } else if (userData.tipo === "administrador") {
           alert("Inicio de sesión con Google exitoso ✅");
           navigate("/menuAdmin");
         } else {
           alert("Inicio de sesión con Google exitoso ✅");
-          navigate("/"); 
+          navigate("/");
         }
       } else {
         setError("Usuario no encontrado ❌");
@@ -87,17 +97,17 @@ export default function Login() {
 
     try {
       const userCredential = await signInWithPopup(auth, facebookProvider);
-      const user = userCredential.user; 
+      const user = userCredential.user;
 
       const userDocRef = doc(db, "users", user.uid);
       const userDocSnap = await getDoc(userDocRef);
 
       if (userDocSnap.exists()) {
         const userData = userDocSnap.data();
-        if (userData.tipo === "estudiante" || userData.tipo === "guia") { 
+        if (userData.tipo === "estudiante" || userData.tipo === "guia") {
           alert("Inicio de sesión con Facebook exitoso ✅");
           navigate("/");
-        } else if (userData.tipo === "administrador") { 
+        } else if (userData.tipo === "administrador") {
           alert("Inicio de sesión con Facebook exitoso ✅");
           navigate("/menuAdmin");
         } else {
@@ -110,7 +120,6 @@ export default function Login() {
     } catch (err) {
       setError("Error al iniciar sesión con Facebook ❌");
     }
-
 
     setLoading(false);
   };
@@ -156,11 +165,8 @@ export default function Login() {
         </button>
 
         <Link to="/registrarse">
-          <button className="registrarse-btn">
-            Registrarse
-          </button>
+          <button className="registrarse-btn">Registrarse</button>
         </Link>
-
       </div>
     </div>
   );
