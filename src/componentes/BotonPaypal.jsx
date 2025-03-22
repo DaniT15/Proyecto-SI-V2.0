@@ -35,14 +35,17 @@ const PayPalButtoncomponent = () => {
 
 
     const onAprove = (data, actions) => {
-        return actions.order.capture().them(function(details){
+        return actions.order.capture().then(function(details){
+
             const name = details.payer.name.given_name
         
             console.log(name)
             console.log("")
             alert("Transacción completada por")
-            navigate("/trasaccionexitosa")
-        })
+            navigate("/detalles",);
+
+        });
+
     }
 
     return (
