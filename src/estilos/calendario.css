@@ -1,3 +1,66 @@
-.calendario-container{
+.calendario-container {
     width: 700px;
+}
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.error-message {
+    color: red;
+    margin-bottom: 10px;
+}
+
+/* Estilos para el botón "Reservar" dentro del modal */
+.modal .event-details {
+    text-align: center; /* Centra el título y la fecha */
+}
+
+.modal .event-details .boton-de-reservar,
+.modal .event-details button {
+    display: flex;
+    justify-content: center; /* Centra los botones */
+}
+
+.modal .boton-de-reservar button {
+    font-size: 16px;
+    padding: 10px 20px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    -webkit-font-smoothing: antialiased;
+    width: auto;
+    min-width: 100px;
+}
+
+.modal .boton-de-reservar button:hover {
+    background-color: #0056b3;
+}
+
+.modal .event-details button {
+    margin-top: 10px; /* Agrega espacio entre los botones */
 }
