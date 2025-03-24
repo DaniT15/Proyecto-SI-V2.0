@@ -61,7 +61,13 @@ export default function RegistrarRuta() {
                     </div>
                     <div className='info'>
                         <label>Dificultad:</label>
-                        <input type="text" value={dificultad} onChange={(e) => setDificultad(e.target.value)} required />
+                        <select value={dificultad} onChange={(e) => setDificultad(e.target.value)} required>
+                            <option value="">Selecciona la dificultad</option>
+                            <option value="Extremo">Extrema</option>
+                            <option value="Alto">Alta</option>
+                            <option value="Medio">Media</option>
+                            <option value="Bajo">Baja</option>
+                        </select>
                     </div>
                     <div className='info'>
                         <label>Duración (minutos):</label>

@@ -11,7 +11,7 @@ export default function Conocenos () {
             <div className='div-info'>
                 <div className='info bloque1'>
                     <h1>Apasionados por el Ávila</h1>
-                    <p>Somos un grupo de amantes de la naturaleza que compartimos la pasión por el senderismo y la belleza del Ávila. Nuestra misión es guiar a otros a descubrir los secretos de esta montaña mágica, crear experiencias inolvidables y que cada vez seamos más personas con amor al senderismo.</p>
+                    <p>Somos un grupo diverso y unido por un amor profundo hacia la naturaleza, con el Ávila como nuestro epicentro de admiración. Compartimos una pasión inquebrantable por el senderismo y nos maravillamos ante la majestuosidad y la belleza de esta montaña emblemática. Nuestra misión trasciende la simple actividad física; buscamos ser embajadores de este tesoro natural, guiando a otros a descubrir sus secretos mejor guardados. Nos esforzamos por crear experiencias de senderismo que dejen huellas imborrables en el alma de cada participante, fomentando un sentido de comunidad y un creciente amor por el senderismo en cada persona que se une a nosotros.</p>
                 </div>
                 
                 <div className='info bloque2'>
