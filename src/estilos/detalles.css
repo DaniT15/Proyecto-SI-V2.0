@@ -1,0 +1,21 @@
+.margen {
+    margin: 20px;
+}
+
+.div-reservar {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align items to the start */
+    padding: 20px;
+    border: 1px solid #ccc; /* Optional: Add a border */
+    border-radius: 5px; /* Optional: Add rounded corners */
+    background-color: #f9f9f9; /* Optional: Background color */
+}
+
+h1 {
+    margin-bottom: 10px; /* Space between heading and paragraph */
+}
+
+p {
+    margin: 5px 0; /* Space between paragraphs */
+}
