@@ -7,29 +7,33 @@
   border-radius: 8px;
   background: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 400px;  /* Agregado para limitar el tamaño máximo */
+  max-width: 400px;
 }
 
 .foto-perfil {
-  width: 150px; /* Ajusta el tamaño de la imagen */
-  height: 150px;
-  border-radius: 50%; /* Hace que la imagen sea redonda */
-  object-fit: cover; /* Asegura que la imagen no se deforme */
-  margin-bottom: 20px; /* Espacio debajo de la foto */
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border: 5px solid #FFB974;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 h2 {
   margin-bottom: 15px;
   color: #333;
+  font-size: 2rem;
 }
 
-
 input {
-  width: 100%;
-  padding: 8px;
+  width: 90%;
+  padding: 10px;
   margin: 8px 0;
   border: 1px solid #ccc;
   border-radius: 4px;
+  font-size: 1rem;
+  display: inline-block;
 }
 
 input[disabled] {
@@ -38,17 +42,40 @@ input[disabled] {
 }
 
 button {
-  width: 100%;
+  width: 90%;
   padding: 10px;
   margin-top: 10px;
   border: none;
   cursor: pointer;
   font-size: 1em;
-  background-color: #007bff;
+  background-color: #FFB974;
   color: white;
   border-radius: 4px;
+  transition: background-color 0.3s ease;
+  display: inline-block;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #e68a2e;
+}
+
+button:active {
+  background-color: #c8912a;
+}
+
+.info {
+  text-align: left;
+  width: 100%;
+  margin: 0;
+  padding: 1rem;
+}
+
+.dato {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.dato label {
+  font-weight: bold;
+  display: block;
 }

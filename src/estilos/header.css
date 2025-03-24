@@ -8,6 +8,7 @@
     color: #1D3D4B;
     padding: 0 2rem;
 }
+
 .container-pages {
     display: flex;
     width: auto;
@@ -15,10 +16,12 @@
     justify-content: space-around;
     align-items: center;
 }
+
 .logo {
     height: 12vh;
     cursor: pointer;
 }
+
 .container-img {
     display: flex;
     justify-content: center;
@@ -27,15 +30,15 @@
     width: auto; 
     padding-top: 2vh; 
 }
+
 .container-user {
     width: 10vw;
     height: 12vh;
     display: flex;
     font-size: 2vh;
     color: #1D3D4B;
-    flex-direction: column;
+    flex-direction: row;  /* Cambié de columna a fila */
     justify-content: center;
-    text-align: center;
     align-items: center;
     margin: 0 3vw 0 0;
     padding: 2rem 1rem;
@@ -45,21 +48,37 @@
 .container-user:hover {
     text-decoration: underline;
 }
+
 .container-user:active {
     color: black;
 }
+
+/* Foto de perfil */
 .user-logo {
-    height: 5vh;
+    height: 7vh;  
+    width: 7vh;   
+    border-radius: 50%;  
+    object-fit: cover; 
+    cursor: pointer;  
+    border: 1px solid black; 
+    padding: 1px;  
+    background-color: #ffffff00;  
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-right: 3px; /* Ajusté para reducir el espacio entre la imagen y el texto */
 }
+
+/* Títulos de encabezado */
 .header-titulos {
     text-decoration: none;
     color: #1D3D4B;
     font-size: 2vh;
     margin: 0 3vw;
 }
+
 .header-titulos:hover {
     text-decoration: underline;
 }
+
 .header-titulos:active {
     color: black;
 }

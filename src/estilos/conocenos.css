@@ -1,3 +1,4 @@
+/* Estilo para el contenedor de la página */
 .bg {
     background-image: url('../assets/conocenos-bg.png');
     background-size: cover;
@@ -9,8 +10,13 @@
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 8vh
+    font-size: 8vh;
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
+
+/* Contenedor de la información */
 .div-info {
     height: auto;
     width: 100vw;
@@ -18,29 +24,57 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 5vh 0;
 }
+
+/* Estilo general de los bloques */
 .info {
     display: flex;
     flex-direction: column;
     height: auto;
-    width: 85vw;
+    width: 80vw;
+    max-width: 900px; /* Para que no se estire demasiado en pantallas grandes */
     justify-content: center;
-    margin: 5vh 0 0 0;
-    padding: 6vh 4vw;
-    border-radius: 38px;
+    margin: 4vh 0;
+    padding: 5vh 4vw;
+    border-radius: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil para darle profundidad */
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo semitransparente para mejorar contraste */
 }
+
+/* Colores para los diferentes bloques */
 .bloque1 {
-    background-color: #EFF0A6;
-    align-items: self-start;
+    background-color: #EFF0A6; /* Amarillo suave */
 }
+
 .bloque2 {
-    background-color: #F0D5A6;
-    align-items: self-end;
+    background-color: #F0D5A6; /* Amarillo pálido */
 }
+
 .bloque3 {
-    background-color: #F0BDA6;
-    align-items: self-start;
+    background-color: #F0BDA6; /* Amarillo anaranjado */
 }
+
+/* Estilo para el logo */
 .logo-conocenos {
-    margin: 5vh 0;
+    margin-top: 5vh;
+    width: 250px;
+    height: auto;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1)); /* Agregar sombra suave al logo */
+}
+
+/* Diseño responsivo */
+@media (max-width: 768px) {
+    .bg {
+        font-size: 6vh; /* Reducir el tamaño del texto en pantallas pequeñas */
+    }
+
+    .info {
+        width: 90vw;
+        padding: 4vh 3vw;
+    }
+
+    .logo-conocenos {
+        width: 200px; /* Reducir tamaño del logo en pantallas pequeñas */
+    }
 }
