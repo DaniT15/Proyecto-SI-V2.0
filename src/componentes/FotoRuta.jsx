@@ -1,49 +1,31 @@
-import { useState } from 'react';
-import { uploadImage } from '../config/supabaseConfig'; 
-import { doc, getFirestore, updateDoc } from 'firebase/firestore';
-import { app } from '../config/firebaseConfig'; 
+import React, { useState } from 'react';
+import { uploadImage } from '../config/supabaseConfig';
 import { getAuth } from 'firebase/auth';
 import { use } from 'react';
 import { UserContext } from '../contextos/UserContext';
 
-const db = getFirestore(app);
-const auth = getAuth(app);
+const auth = getAuth();
 
-export default function FotoRuta({ rutaId }) {
+export default function FotoRuta({ onPortadaUpload }) {
   const [isUploading, setIsUploading] = useState(false);
   const { profile, setProfile } = use(UserContext);
-  const [ruta, setRuta] = useState(null);
+  const [uploadedImageUrl, setUploadedImageUrl] = useState(null);
 
-  // Subir imagen de portada
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
     setIsUploading(true);
     try {
-      // El usuario actual
       const user = auth.currentUser;
+      const imageUrl = await uploadImage(file, 'foto-portada', user.uid); // Usamos 'foto-portada' como bucket
 
-      // Subir la imagen a Supabase con el bucket 'foto-portada'
-      const imageUrl = await uploadImage(file, 'foto-portada', user.uid);
-
-      // Verifica que `rutaId` esté definido antes de intentar actualizarla
-      if (rutaId) {
-        const rutaDocRef = doc(db, 'rutas', rutaId); // Usa la ID de la ruta pasada como prop
-        await updateDoc(rutaDocRef, {
-          foto_portada: imageUrl
-        });
-
-        // Actualizar el estado local (en caso de que necesites mostrar la foto en la UI)
-        setRuta({
-          ...ruta,
-          foto_portada: imageUrl
-        });
-
-        alert('Foto de portada subida correctamente ✅');
-      } else {
-        alert('Ruta no encontrada.');
+      setUploadedImageUrl(imageUrl);
+      if (onPortadaUpload) {
+        onPortadaUpload(imageUrl); // Llama a la función de éxito en RegistrarRuta
       }
+
+      alert('Foto de portada subida correctamente ✅');
     } catch (error) {
       console.error('Error al subir la imagen', error);
       alert('Error al subir la imagen');
@@ -57,8 +39,8 @@ export default function FotoRuta({ rutaId }) {
       <h1>Foto de Portada de Ruta</h1>
 
       <div className="foto-portada-container mb-4">
-        <img 
-          src={ruta?.foto_portada || "https://via.placeholder.com/150"} 
+        <img
+          src={uploadedImageUrl || 'https://via.placeholder.com/150'}
           alt="Foto de portada"
           className="foto-portada"
         />

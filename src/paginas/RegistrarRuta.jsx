@@ -72,7 +72,7 @@ export default function RegistrarRuta() {
                         <input type="number" step="0.01" value={distancia} onChange={(e) => setDistancia(e.target.value)} required />
                     </div>
                     {/* Componente FotoRuta para subir la foto de portada */}
-                    <FotoRuta onPortadaUpload={handlePortadaUpload} />
+                    <FotoRuta onPortadaUpload={handlePortadaUpload} required/>
                     <button type="submit">Registrar</button>
                 </form>
                 {status && <p>{status}</p>}

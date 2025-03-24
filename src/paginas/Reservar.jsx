@@ -55,7 +55,7 @@ export default function Reservar() {
             <div className="div-reservar">
                 <div className='reservar-datos'>
                     <div>
-                        <img src={ruta.imagen} alt={ruta.nombre} className="reservar-imagen" />
+                        <img src={ruta.foto_portada} alt={ruta.nombre} className="reservar-imagen" />
                     </div>
 
                     <div className="reservar-info">
