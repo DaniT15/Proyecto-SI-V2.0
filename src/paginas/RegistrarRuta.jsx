@@ -1,108 +1,84 @@
-import React, { useState, useEffect } from 'react';
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import React, { useState } from 'react';
+import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../config/firebaseConfig';
-import { supabase } from '../config/supabaseConfig';
-import { useParams } from 'react-router-dom';
- 
+import FotoRuta from '../componentes/FotoRuta'; // Importamos FotoRuta para gestionar la foto de portada
 import '../estilos/registrarRuta.css';
 
-export default function EditarRuta() {
-    const { id } = useParams();
-    const [ruta, setRuta] = useState(null);
+export default function RegistrarRuta() {
     const [nombre, setNombre] = useState('');
     const [descripcion, setDescripcion] = useState('');
     const [dificultad, setDificultad] = useState('');
     const [tiempo, setTiempo] = useState('');
     const [distancia, setDistancia] = useState('');
-    const [portadaFile, setPortadaFile] = useState(null);
     const [status, setStatus] = useState('');
+    const [portadaURL, setPortadaURL] = useState(''); // Estado para la URL de la foto de portada
 
-    useEffect(() => {
-        const cargarRuta = async () => {
-            try {
-                const docRef = doc(db, 'rutas', id);
-                const docSnap = await getDoc(docRef);
-                if (docSnap.exists()) {
-                    const data = docSnap.data();
-                    setRuta(data);
-                    setNombre(data.nombre || '');
-                    setDescripcion(data.descripcion || '');
-                    setDificultad(data.dificultad || '');
-                    setTiempo(data.tiempo || '');
-                    setDistancia(data.distancia || '');
-                } else {
-                    setStatus('Ruta no encontrada ❌');
-                }
-            } catch (error) {
-                console.error("Error al cargar la ruta:", error);
-                setStatus('Error al cargar la ruta ❌');
-            }
-        };
-        cargarRuta();
-    }, [id]);
+    // Esta función se pasa a FotoRuta para actualizar el estado con la URL de la foto de portada
+    const handlePortadaUpload = (url) => {
+        setPortadaURL(url);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setStatus('Actualizando...');
-        try {
-            let portadaURL = ruta.foto_portada || '';
-            if (portadaFile) {
-                const fileName = portadaFile.name;
-                const { error } = await supabase.storage.from('portadas-rutas').upload(fileName, portadaFile);
-                if (error) {
-                    setStatus('Error al subir la imagen ❌');
-                    return;
-                }
-                const { data: urlData } = supabase.storage.from('portadas-rutas').getPublicUrl(fileName);
-                portadaURL = urlData.publicUrl;
-            }
+        setStatus('Registrando...');
 
-            await updateDoc(doc(db, 'rutas', id), {
+        try {
+            // Registrar la ruta con la URL de la foto de portada
+            await addDoc(collection(db, 'rutas'), {
                 nombre,
                 descripcion,
                 dificultad,
                 tiempo: parseInt(tiempo),
                 distancia: parseFloat(distancia),
-                foto_portada: portadaURL
+                foto_portada: portadaURL, // Guardar la URL de la foto de portada
             });
 
-            setStatus('Ruta actualizada correctamente ✅');
+            setStatus('Ruta registrada con éxito ✅');
+            setNombre('');
+            setDescripcion('');
+            setDificultad('');
+            setTiempo('');
+            setDistancia('');
+            setPortadaURL(''); // Limpiar la URL de la foto de portada
         } catch (error) {
-            console.error('Error al actualizar:', error);
-            setStatus('Error al actualizar ❌');
+            console.error('Error al registrar la ruta:', error);
+            setStatus('Error al registrar la ruta ❌');
         }
     };
 
-    if (!ruta) return <p>{status || 'Cargando ruta...'}</p>;
-
     return (
-        <div className='editarRuta-container'>
-            <h2>Editar Ruta</h2>
-            <form onSubmit={handleSubmit}>
-                <label>Nombre:</label>
-                <input type="text" value={nombre} onChange={(e) => setNombre(e.target.value)} required />
+        <div className='margen'>
+            <div className='registrarRuta-container'>
+                <h2>Registrar Ruta</h2>
+                <form onSubmit={handleSubmit}>
+                    <div className='info'>
+                        <label>Nombre:</label>
+                        <input type="text" value={nombre} onChange={(e) => setNombre(e.target.value)} required />
+                    </div>
+                    <div className='info'>
+                        <label>Descripción:</label>
+                        <textarea className='descripcion' value={descripcion} onChange={(e) => setDescripcion(e.target.value)} required />
+                    </div>
+                    <div className='info'>
+                        <label>Dificultad:</label>
+                        <input type="text" value={dificultad} onChange={(e) => setDificultad(e.target.value)} required />
+                    </div>
+                    <div className='info'>
+                        <label>Duración (minutos):</label>
+                        <input type="number" value={tiempo} onChange={(e) => setTiempo(e.target.value)} required />
+                    </div>
+                    <div className='info'>
+                        <label>Distancia (km):</label>
+                        <input type="number" step="0.01" value={distancia} onChange={(e) => setDistancia(e.target.value)} required />
+                    </div>
 
-                <label>Descripción:</label>
-                <textarea value={descripcion} onChange={(e) => setDescripcion(e.target.value)} required />
+                    {/* Componente FotoRuta para subir la foto de portada */}
+                    <FotoRuta onPortadaUpload={handlePortadaUpload} />
 
-                <label>Dificultad:</label>
-                <input type="text" value={dificultad} onChange={(e) => setDificultad(e.target.value)} required />
-
-                <label>Duración (min):</label>
-                <input type="number" value={tiempo} onChange={(e) => setTiempo(e.target.value)} required />
-
-                <label>Distancia (km):</label>
-                <input type="number" step="0.01" value={distancia} onChange={(e) => setDistancia(e.target.value)} required />
-
-                <label>Foto de Portada Actual:</label>
-                <img src={ruta.foto_portada} alt="Portada actual" style={{ width: '100%', height: '150px', objectFit: 'cover', marginBottom: '10px' }} />
-
-                <label>Cambiar Foto de Portada:</label>
-                <input type="file" accept="image/*" onChange={(e) => setPortadaFile(e.target.files[0])} />
-
-                <button type="submit">Guardar Cambios</button>
-            </form>
-            {status && <p>{status}</p>}
+                    <button type="submit">Registrar</button>
+                </form>
+                {status && <p>{status}</p>}
+            </div>
         </div>
     );
 }
