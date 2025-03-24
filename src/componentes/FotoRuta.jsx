@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { uploadImage } from '../config/supabaseConfig'; 
+import { doc, getFirestore, updateDoc } from 'firebase/firestore';
 import { app } from '../config/firebaseConfig'; 
 import { getAuth } from 'firebase/auth';
 import { use } from 'react';
@@ -8,11 +9,12 @@ import { UserContext } from '../contextos/UserContext';
 const db = getFirestore(app);
 const auth = getAuth(app);
 
-export default function FotoRuta({ onPortadaUpload }) {
+export default function FotoRuta({ rutaId }) {
   const [isUploading, setIsUploading] = useState(false);
   const { profile, setProfile } = use(UserContext);
+  const [ruta, setRuta] = useState(null);
 
-  // Subir la imagen de portada
+  // Subir imagen de portada
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -25,10 +27,23 @@ export default function FotoRuta({ onPortadaUpload }) {
       // Subir la imagen a Supabase con el bucket 'foto-portada'
       const imageUrl = await uploadImage(file, 'foto-portada', user.uid);
 
-      // Llamar a la función que se pasa como prop para actualizar la URL de la portada
-      onPortadaUpload(imageUrl);
+      // Verifica que `rutaId` esté definido antes de intentar actualizarla
+      if (rutaId) {
+        const rutaDocRef = doc(db, 'rutas', rutaId); // Usa la ID de la ruta pasada como prop
+        await updateDoc(rutaDocRef, {
+          foto_portada: imageUrl
+        });
 
-      alert('Foto de portada subida correctamente ✅');
+        // Actualizar el estado local (en caso de que necesites mostrar la foto en la UI)
+        setRuta({
+          ...ruta,
+          foto_portada: imageUrl
+        });
+
+        alert('Foto de portada subida correctamente ✅');
+      } else {
+        alert('Ruta no encontrada.');
+      }
     } catch (error) {
       console.error('Error al subir la imagen', error);
       alert('Error al subir la imagen');
@@ -43,7 +58,7 @@ export default function FotoRuta({ onPortadaUpload }) {
 
       <div className="foto-portada-container mb-4">
         <img 
-          src="https://via.placeholder.com/150" 
+          src={ruta?.foto_portada || "https://via.placeholder.com/150"} 
           alt="Foto de portada"
           className="foto-portada"
         />

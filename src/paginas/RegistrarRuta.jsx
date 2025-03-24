@@ -13,11 +13,6 @@ export default function RegistrarRuta() {
     const [status, setStatus] = useState('');
     const [portadaURL, setPortadaURL] = useState(''); // Estado para la URL de la foto de portada
 
-    // Esta función se pasa a FotoRuta para actualizar el estado con la URL de la foto de portada
-    const handlePortadaUpload = (url) => {
-        setPortadaURL(url);
-    };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         setStatus('Registrando...');
@@ -46,6 +41,11 @@ export default function RegistrarRuta() {
         }
     };
 
+    // Función para actualizar la URL de la foto de portada
+    const handlePortadaUpload = (url) => {
+        setPortadaURL(url);
+    };
+
     return (
         <div className='margen'>
             <div className='registrarRuta-container'>
@@ -71,10 +71,8 @@ export default function RegistrarRuta() {
                         <label>Distancia (km):</label>
                         <input type="number" step="0.01" value={distancia} onChange={(e) => setDistancia(e.target.value)} required />
                     </div>
-
                     {/* Componente FotoRuta para subir la foto de portada */}
                     <FotoRuta onPortadaUpload={handlePortadaUpload} />
-
                     <button type="submit">Registrar</button>
                 </form>
                 {status && <p>{status}</p>}
