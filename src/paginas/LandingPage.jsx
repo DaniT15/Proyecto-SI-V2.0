@@ -20,49 +20,50 @@ export default function LandigPage() {
                     <h1>Conoce todas nuestras rutas</h1>
                 </div>
                 <div className='cartas'>
-                    <RutaLP nombre="Pico Naiguatá"
-                        imagen={naiguata}
-                        bgColor={"#D5EB9C"}
-                    ></RutaLP>
+                    <Link to="/rutas">
+                        <RutaLP nombre="Pico Naiguatá"
+                            imagen={naiguata}
+                            bgColor={"#D5EB9C"}
+                        />
+                    </Link>
 
-                    <RutaLP nombre="Sabas Nieves"
-                        imagen={sabasnieves}
-                        bgColor={"#95CFA6"}
-                    ></RutaLP>
-
+                    <Link to="/rutas">
+                        <RutaLP nombre="Sabas Nieves"
+                            imagen={sabasnieves}
+                            bgColor={"#95CFA6"}
+                        />
+                    </Link>
                 </div>
             </div>
+
             <div className='div-boton'>
                 <Link to="/rutas" className='boton'>
-                        <h2>Ver todas las rutas</h2>
+                    <h2>Ver todas las rutas</h2>
                 </Link>
-
             </div>
+
             <div className='div-comparte'>
                 <div className='titulo-comparte'>
                     <h1>Comparte con la comunidad UNIMET</h1>
                 </div>
                 <div className='compartidos'>
                     <div className='compartido'>
-                        <div>
-                            <img src={profe} className='img-comparte' />
-                        </div>
+                        <img src={profe} className='img-comparte' />
                         <div>
                             <h3>FRANKLIN SANDOVAL</h3>
                             <p>¡Increíble experiencia! La ruta que elegimos fue perfecta para nuestro nivel y las vistas fueron espectaculares. ¡Lo recomiendo al 100%!</p>
                         </div>
                     </div>
                     <div className='compartido'>
-                        <div>
-                            <img src={carlo} className='img-comparte' />
-                        </div>
+                        <img src={carlo} className='img-comparte' />
                         <div>
                             <h3>CARLO CARPENTIERI</h3>
-                            <p>¡No se pierdan las excursiones!  Sus guías son unos expertos en la naturaleza y hacen que la experiencia sea inolvidable. ¡Definitivamente volveré a reservar con ellos!</p>
+                            <p>¡No se pierdan las excursiones! Sus guías son unos expertos en la naturaleza y hacen que la experiencia sea inolvidable. ¡Definitivamente volveré a reservar con ellos!</p>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div className='container-avila1'>
                 <img src={avila2} className='avila1' />
             </div>
