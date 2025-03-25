@@ -54,7 +54,7 @@ export default function Comentarios() {
 
     return (
         <div className="comentarios-container">
-            <h2>Comentarios</h2>
+            <h2>Foro</h2>
             <form className="comentario-form" onSubmit={handleCommentSubmit}>
                 <textarea
                     value={newComment}

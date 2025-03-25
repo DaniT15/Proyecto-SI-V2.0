@@ -1,4 +1,3 @@
-/* Contenedor de comentarios */
 .comentarios-container {
     width: 80%;
     margin: 40px auto;
@@ -9,7 +8,6 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Título de la sección de comentarios */
 .comentarios-container h2 {
     text-align: center;
     margin-bottom: 20px;
@@ -18,7 +16,6 @@
     font-weight: 600;
 }
 
-/* Estilo del formulario para agregar comentarios */
 .comentario-form {
     margin-bottom: 20px;
     background-color: #ffffff;
@@ -27,7 +24,6 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
 
-/* Campo de texto del comentario */
 .comentario-form textarea {
     width: 100%;
     padding: 12px;
@@ -40,7 +36,6 @@
     font-family: 'Arial', sans-serif;
 }
 
-/* Botón de envío de comentario */
 .comentario-form button {
     background-color: #4CAF50;
     color: white;
@@ -50,18 +45,18 @@
     cursor: pointer;
     font-size: 1rem;
     transition: background-color 0.3s;
+    display: block;
+    margin: 0 auto;
 }
 
 .comentario-form button:hover {
     background-color: #45a049;
 }
 
-/* Lista de comentarios */
 .comentario-list {
     margin-top: 30px;
 }
 
-/* Estilo individual para cada comentario */
 .comentario-item {
     background-color: #fff;
     padding: 20px;
@@ -74,27 +69,23 @@
     transition: transform 0.3s;
 }
 
-/* Efecto hover en el comentario */
 .comentario-item:hover {
     transform: scale(1.02);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Nombre del usuario (sin espacio entre nombre y `:`) */
 .comentario-item p strong {
     font-weight: bold;
-    margin-right: 0; /* Eliminar el espacio entre el nombre y los dos puntos */
-    display: inline; /* Asegura que el nombre y los dos puntos estén en una misma línea */
+    margin-right: 0;
+    display: inline;
 }
 
-/* Estilo del comentario */
 .comentario-item p {
-    margin: 0; /* Eliminar cualquier margen alrededor del comentario */
+    margin: 0;
     font-size: 1rem;
     line-height: 1.6;
 }
 
-/* Triángulo decorativo para los comentarios */
 .comentario-item::before {
     content: '';
     position: absolute;
@@ -105,7 +96,6 @@
     border-color: #f9f9f9 transparent transparent transparent;
 }
 
-/* Estilo para los comentarios en compartidos */
 .compartido1 {
     display: flex;
     justify-content: space-between;
@@ -123,7 +113,6 @@
     background: #ff9a00;
 }
 
-/* Estilo para el nombre del usuario en la flecha de comentario */
 .comentario-item .user-name {
     font-size: 1.1rem;
     font-weight: 600;
@@ -131,7 +120,6 @@
     margin-bottom: 8px;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .comentarios-container {
         width: 95%;
