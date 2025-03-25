@@ -6,7 +6,8 @@
     min-height: 70vh;
     padding: 3vh 4vw;
     background-color: antiquewhite;
-    margin-bottom: 20px; /* Added margin to create space between footer and content */
+    margin-bottom: 20px;
+    /* Added margin to create space between footer and content */
 }
 
 
@@ -60,7 +61,7 @@
 .ruta:hover {
     border: 1.5px solid #3a3a3a;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-    transform: scale(1.05); 
+    transform: scale(1.05);
 }
 
 .ruta-imagen {
@@ -73,4 +74,20 @@
 
 .ruta-info {
     flex: 1;
+}
+
+
+.actividad-guia {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.actividades-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
 }
