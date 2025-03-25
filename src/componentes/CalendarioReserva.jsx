@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import { collection, getDocs, doc, updateDoc } from 'firebase/firestore';
+import { collection, getDocs, doc, updateDoc, addDoc, arrayUnion } from 'firebase/firestore';
 import { db } from '../config/firebaseConfig';
 import '../estilos/calendario.css';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
+import { auth } from '../config/firebaseConfig'; // Import auth to get the current user
 
 const localizer = momentLocalizer(moment);
 
@@ -73,11 +74,20 @@ export default function CalendarioReserva({ rutaId }) {
                 const actividadDocRef = doc(db, 'actividades', selectedEvent.id);
                 await updateDoc(actividadDocRef, { reservas: true });
 
-                const updatedActividades = actividades.map(actividad =>
-                    actividad.id === selectedEvent.id ? { ...actividad, reservas: true } : actividad
-                );
-                setActividades(updatedActividades);
-                setSelectedEvent({ ...selectedEvent, reservas: true });
+                const reservationId = selectedEvent.id; // Assuming the event ID is the reservation ID
+                const userDocRef = doc(db, 'users', auth.currentUser.uid);
+                await updateDoc(userDocRef, {
+                    reservas: arrayUnion(reservationId)
+                });
+
+                const rutasReservadasRef = collection(db, 'rutasReservadas');
+                await addDoc(rutasReservadasRef, {
+                    rutaId: selectedEvent.rutaId,
+                    fechaReserva: selectedEvent.start,
+                    userId: auth.currentUser.uid,
+                    reservationId: reservationId
+                });
+
                 setIsModalOpen(false);
             } catch (error) {
                 setError('Error al reservar: ' + error.message);

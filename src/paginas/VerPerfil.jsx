@@ -49,6 +49,14 @@ export default function VerPerfil() {
                     Ver Actividades
                 </button>
             )}
+            {!esGuia() && profile?.tipo === "estudiante" && (
+                <Link to="/rutasReservadas">
+                    <button className="ver-rutas-reservadas">
+                        Ver Rutas Reservadas
+                    </button>
+                </Link>
+
+            )}
 
             <Link to="/editarPerfil">
                 <button className="editar-perfil">
@@ -56,6 +64,7 @@ export default function VerPerfil() {
                 </button>
             </Link>
             <Link to="/">
+
                 <button className="cerrar-sesion" onClick={handleLogout}>
                     Cerrar Sesión
                 </button>
