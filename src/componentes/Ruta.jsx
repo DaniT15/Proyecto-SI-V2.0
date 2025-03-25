@@ -36,7 +36,7 @@ export default function Ruta({ rutaId }) {
 
     return (
         <div className="ruta" onClick={handleRutaClick}>
-            <img src={ruta.foto} alt={ruta.nombre} className="ruta-imagen" />
+            <img src={ruta.foto_portada} alt={ruta.nombre} className="ruta-imagen" />
             <div className="ruta-info">
                 <h3>{ruta.nombre}</h3>
                 <p>Dificultad: {ruta.dificultad}</p>

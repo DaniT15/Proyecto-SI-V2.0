@@ -3,6 +3,7 @@ import Ruta from '../componentes/Ruta';
 import '../estilos/guia.css';
 import { db, collection, getDocs, query, where } from '../config/firebaseConfig';
 import { auth } from '../config/firebaseConfig'; //Importamos auth para obtener el usuario actual.
+import moment from 'moment';
 
 export default function Guia() {
   const [actividades, setActividades] = useState([]);
@@ -16,6 +17,7 @@ export default function Guia() {
         const actividadesSnapshot = await getDocs(q);
         const fetchedActividades = actividadesSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
         setActividades(fetchedActividades);
+        console.log(fetchedActividades);
       } else {
         console.log("Usuario no logeado");
       }
@@ -26,13 +28,19 @@ export default function Guia() {
 
   return (
     <div className="rutas-div1">
-      <h1 className="titulo-rutas1">Rutas Asignadas</h1>
+      <h1 className="titulo-rutas1">Actividades Asignadas</h1>
       {actividades.length === 0 ? (
         <p>No hay rutas asignadas.</p>
       ) : (
-        actividades.map((actividad, index) => (
-          <Ruta key={index} {...actividad} />
-        ))
+        <div className="actividades-container">
+          {actividades.map((actividad, index) => (
+            <div key={index} className='actividad-guia'>
+              <p><b>Nombre de la actividad:</b> {actividad.titulo}</p>
+              <p><b>ID de la Actividad:</b> {actividad.id}</p>
+              <p><b>Fecha: </b>{actividad.fecha ? moment(actividad.fecha.toDate()).format('DD/MM/YYYY') : 'Fecha no disponible'}</p>
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );

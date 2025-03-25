@@ -1,4 +1,3 @@
-// FotoPerfil.js
 import { useState } from 'react';
 import { uploadImage } from '../config/supabaseConfig'; 
 import { doc, getFirestore, updateDoc } from 'firebase/firestore';
@@ -49,7 +48,6 @@ export default function FotoPerfil() {
 
   return (
     <div className="container mx-auto p-4">
-      <h1>Mi Perfil</h1>
 
       <div className="foto-perfil-container mb-4">
         <img 

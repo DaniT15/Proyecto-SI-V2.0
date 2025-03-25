@@ -1,3 +1,4 @@
+/* Fondo superior con imagen */
 .bg {
     background-image: url('../assets/conocenos-bg.png');
     background-size: cover;
@@ -9,38 +10,76 @@
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 8vh
+    font-size: 8vh;
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
+
+/* Contenedor de bloques en fila */
 .div-info {
-    height: auto;
-    width: 100vw;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap; 
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    gap: 2vw; 
+    padding: 4vh 2vw;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
+
+/* Estilo general de los bloques */
 .info {
-    display: flex;
-    flex-direction: column;
-    height: auto;
-    width: 85vw;
-    justify-content: center;
-    margin: 5vh 0 0 0;
-    padding: 6vh 4vw;
-    border-radius: 38px;
+    flex: 1 1 30%; 
+    min-width: 280px;
+    max-width: 350px;
+    padding: 3vh 2vw;
+    border-radius: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.9);
+    box-sizing: border-box;
 }
+
+/* Colores específicos por bloque */
 .bloque1 {
     background-color: #EFF0A6;
-    align-items: self-start;
 }
 .bloque2 {
     background-color: #F0D5A6;
-    align-items: self-end;
 }
 .bloque3 {
     background-color: #F0BDA6;
-    align-items: self-start;
 }
+
+/* Logo debajo de los bloques */
+.logo-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 4vh 0;
+}
+
 .logo-conocenos {
-    margin: 5vh 0;
+    width: 300px; /* Aumentar el tamaño del logo */
+    height: auto;
+    filter: none; /* Eliminar el sombreado */
+}
+
+/* Responsivo */
+@media (max-width: 900px) {
+    .div-info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .info {
+        width: 90%;
+        max-width: 600px;
+        margin-bottom: 2vh;
+    }
+
+    .logo-conocenos {
+        width: 250px; /* Asegurar tamaño del logo en pantallas pequeñas */
+    }
 }

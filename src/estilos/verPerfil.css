@@ -1,61 +1,85 @@
 .perfil-container {
-    width: 450px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    width: 380px; 
+    margin-top: 30px;
+    margin-bottom: 30px;
     padding: 20px;
     text-align: center;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    border: none;
+    border-radius: 15px;
     background: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    background-color: #f9f9f9;
 }
+
 .perfil-foto {
-    width: 150px; /* Ajusta el tamaño de la imagen */
-    height: 150px;
-    border-radius: 50%; /* Hace que la imagen sea redonda */
-    object-fit: cover; /* Asegura que la imagen no se deforme */
-    margin-bottom: 20px; /* Espacio debajo de la foto */
-  }
-  
-.avatar {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px auto;
+    object-fit: cover;
+    border: 5px solid #FFB974;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.perfil-foto:hover {
+    transform: scale(1.1);
 }
 
 .info {
     text-align: left;
-    width: 80%;
+    width: 100%;
     margin: 0;
-    padding: 0 0 0 1rem;
+    padding: 10px;
+    max-width: 350px; 
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .dato {
     text-align: left;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .dato label {
     font-weight: bold;
+    font-size: 1rem;
+    color: #333;
     display: block;
+    margin-bottom: 5px;
+}
+
+.dato p {
+    font-size: 1rem;
+    color: #555;
 }
 
 .editar-perfil {
+    background-color: #FFB974;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 1rem;
+    margin-top: 15px;
+    cursor: pointer;
     transition: background-color 0.3s ease;
-    background-color: #dea63f;
 }
 
 .editar-perfil:hover {
-    background-color: #c8912a;
+    background-color: #e68a2e;
 }
 
 .cerrar-sesion {
-    transition: background-color 0.3s ease;
     background-color: #de3f3f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 1rem;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .cerrar-sesion:hover {

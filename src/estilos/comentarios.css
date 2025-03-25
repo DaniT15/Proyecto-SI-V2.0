@@ -1,72 +1,153 @@
+/* Contenedor de comentarios */
 .comentarios-container {
     width: 80%;
-    margin: 20px auto;
-    font-family: sans-serif;
+    margin: 40px auto;
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+/* Título de la sección de comentarios */
 .comentarios-container h2 {
     text-align: center;
     margin-bottom: 20px;
+    color: #333;
+    font-size: 2rem;
+    font-weight: 600;
 }
 
+/* Estilo del formulario para agregar comentarios */
 .comentario-form {
     margin-bottom: 20px;
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
 
+/* Campo de texto del comentario */
 .comentario-form textarea {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
+    padding: 12px;
+    margin-bottom: 12px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 8px;
+    font-size: 1rem;
     resize: vertical;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
 }
 
+/* Botón de envío de comentario */
 .comentario-form button {
-    background-color: #007bff;
+    background-color: #4CAF50;
     color: white;
-    padding: 10px 15px;
+    padding: 12px 18px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
 }
 
+.comentario-form button:hover {
+    background-color: #45a049;
+}
+
+/* Lista de comentarios */
 .comentario-list {
-    border-top: 1px solid #eee;
-    padding-top: 20px;
+    margin-top: 30px;
 }
 
+/* Estilo individual para cada comentario */
 .comentario-item {
-    background-color: #f9f9f9;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 20px;
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     position: relative;
+    font-size: 1rem;
+    line-height: 1.6;
+    transition: transform 0.3s;
 }
 
-.comentario-item strong {
+/* Efecto hover en el comentario */
+.comentario-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Nombre del usuario (sin espacio entre nombre y `:`) */
+.comentario-item p strong {
     font-weight: bold;
-    margin-right: 5px;
+    margin-right: 0; /* Eliminar el espacio entre el nombre y los dos puntos */
+    display: inline; /* Asegura que el nombre y los dos puntos estén en una misma línea */
 }
 
+/* Estilo del comentario */
+.comentario-item p {
+    margin: 0; /* Eliminar cualquier margen alrededor del comentario */
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Triángulo decorativo para los comentarios */
 .comentario-item::before {
     content: '';
     position: absolute;
-    top: 10px;
-    left: -10px;
-    border-width: 10px 10px 10px 0;
+    top: -12px;
+    left: 15px;
+    border-width: 12px 12px 12px 0;
     border-style: solid;
-    border-color: transparent #f9f9f9 transparent transparent;
+    border-color: #f9f9f9 transparent transparent transparent;
 }
 
+/* Estilo para los comentarios en compartidos */
 .compartido1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 93px;
+    border-radius: 50px;
     background: #FFB974;
-    width: 62vw;
-    padding: 2vh 0;
-    height: auto;
-    margin: 0 0 3vh 0;
+    padding: 16px 32px;
+    margin-bottom: 25px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: background-color 0.3s;
+}
+
+.compartido1:hover {
+    background: #ff9a00;
+}
+
+/* Estilo para el nombre del usuario en la flecha de comentario */
+.comentario-item .user-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #007bff;
+    margin-bottom: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .comentarios-container {
+        width: 95%;
+    }
+
+    .comentario-item {
+        padding: 15px;
+        font-size: 0.9rem;
+    }
+
+    .comentario-form button {
+        font-size: 0.9rem;
+        padding: 10px 15px;
+    }
+
+    .comentario-form textarea {
+        padding: 10px;
+    }
 }

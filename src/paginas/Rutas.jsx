@@ -1,5 +1,4 @@
 import "../estilos/rutas.css"
-import flecha from '../assets/flecha-abajo.png'
 import separador from '../assets/separador.png'
 import Ruta from "../componentes/Ruta"
 
@@ -25,30 +24,20 @@ export default function Rutas() {
         };
 
         fetchRutas();
-    }, []);
-
+    }, []);  // Solo se ejecuta una vez al cargar el componente
 
     return (
         <div className="rutas-div">
             <div className="titulo-div">
                 <h1>Nuestras rutas</h1>
-                <div className="filtrar-div">
-                    <h2>Filtar por</h2>
-                    <img className="separador" src={separador} alt="" />
-                    <div className="filtrado">
-                        <h2>popularidad</h2>
-                        <img className="flecha" src={flecha} alt="" />
-                    </div>
-                </div>
             </div>
             <div className="lista-rutas">
                 {rutas.map(ruta => (
-                    <div className="div-rutas-boton-reserva">
-                        <Ruta key={ruta.id} rutaId={ruta.id}  />
+                    <div className="div-rutas-boton-reserva" key={ruta.id}>
+                        <Ruta rutaId={ruta.id}  />
                     </div>
                 ))}
             </div>
-
         </div>
-    )
+    );
 }

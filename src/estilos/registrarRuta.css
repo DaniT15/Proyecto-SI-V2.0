@@ -21,3 +21,8 @@
     font-size: 16px;
     font-family: 'Myanmar Khyay', sans-serif;
 }
+
+.foto-portada {
+    width: 500px;
+    border-radius: 10px;
+}

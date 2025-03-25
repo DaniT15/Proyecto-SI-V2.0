@@ -1,17 +1,17 @@
-import "../estilos/header.css"
-import logo from "../assets/logo.png"
-import userlogo from "../assets/userlogo.png"
+import "../estilos/header.css";
+import logo from "../assets/logo.png";
+import userlogo from "../assets/userlogo.png";
 import { Link } from 'react-router-dom';
 import { UserContext } from "../contextos/UserContext";
 import { useContext } from 'react';
 import { getAuth, signOut } from "firebase/auth";
 import { app } from "../config/firebaseConfig";
 
-const auth = getAuth(app)
+const auth = getAuth(app);
 
 export default function Header() {
-    const contextUser = useContext(UserContext)
-    const { user, setUser, profile, logged } = contextUser
+    const contextUser = useContext(UserContext);
+    const { user, setUser, profile, logged } = contextUser;
 
     return (
         <header className="header">
@@ -39,20 +39,24 @@ export default function Header() {
                 </Link>
             </div>
             <div className="container-user">
-                {!logged ?
+                {!logged ? (
                     <Link to="/login" className="container-user">
                         <img src={userlogo} alt="usuario" className="user-logo" />
                         <p>Iniciar Sesión</p>
-                    </Link> :
+                    </Link>
+                ) : (
                     <div className="container-user-registered">
-                        <Link to="/verPerfil" className="container-user">
-                            <img src={userlogo} alt="usuario" className="user-logo" />
-                            <p>Ver Perfil: {profile?.name}</p>
+                        {/* Aquí se muestra la foto de perfil si está disponible */}
+                        <Link to="/verPerfil">
+                            <img 
+                                src={profile?.foto_perfil || userlogo} 
+                                alt="usuario" 
+                                className="user-logo" 
+                            />
                         </Link>
                     </div>
-                }
-                
+                )}
             </div>
         </header>
-    )
+    );
 }

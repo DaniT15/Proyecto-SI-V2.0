@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../config/firebaseConfig';
-import '../estilos/registrarRuta.css'
-
+import FotoRuta from '../componentes/FotoRuta'; // Importamos FotoRuta para gestionar la foto de portada
+import '../estilos/registrarRuta.css';
 
 export default function RegistrarRuta() {
     const [nombre, setNombre] = useState('');
@@ -10,31 +10,40 @@ export default function RegistrarRuta() {
     const [dificultad, setDificultad] = useState('');
     const [tiempo, setTiempo] = useState('');
     const [distancia, setDistancia] = useState('');
-    const [fotos, setFotos] = useState('');
     const [status, setStatus] = useState('');
+    const [portadaURL, setPortadaURL] = useState(''); // Estado para la URL de la foto de portada
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setStatus('Registrando...');
+
         try {
+            // Registrar la ruta con la URL de la foto de portada
             await addDoc(collection(db, 'rutas'), {
                 nombre,
                 descripcion,
                 dificultad,
                 tiempo: parseInt(tiempo),
                 distancia: parseFloat(distancia),
-                fotos: fotos.split(','),
+                foto_portada: portadaURL, // Guardar la URL de la foto de portada
             });
-            setStatus('Ruta registrada con éxito.');
+
+            setStatus('Ruta registrada con éxito ✅');
             setNombre('');
             setDescripcion('');
             setDificultad('');
             setTiempo('');
             setDistancia('');
-            setFotos('');
+            setPortadaURL(''); // Limpiar la URL de la foto de portada
         } catch (error) {
             console.error('Error al registrar la ruta:', error);
-            setStatus('Error al registrar la ruta.');
+            setStatus('Error al registrar la ruta ❌');
         }
+    };
+
+    // Función para actualizar la URL de la foto de portada
+    const handlePortadaUpload = (url) => {
+        setPortadaURL(url);
     };
 
     return (
@@ -44,28 +53,32 @@ export default function RegistrarRuta() {
                 <form onSubmit={handleSubmit}>
                     <div className='info'>
                         <label>Nombre:</label>
-                        <input type="text" value={nombre} onChange={(e) => setNombre(e.target.value)} />
+                        <input type="text" value={nombre} onChange={(e) => setNombre(e.target.value)} required />
                     </div>
                     <div className='info'>
                         <label>Descripción:</label>
-                        <textarea className='descripcion' value={descripcion} onChange={(e) => setDescripcion(e.target.value)} />
+                        <textarea className='descripcion' value={descripcion} onChange={(e) => setDescripcion(e.target.value)} required />
                     </div>
                     <div className='info'>
                         <label>Dificultad:</label>
-                        <input type="text" value={dificultad} onChange={(e) => setDificultad(e.target.value)} />
+                        <select value={dificultad} onChange={(e) => setDificultad(e.target.value)} required>
+                            <option value="">Selecciona la dificultad</option>
+                            <option value="Extremo">Extrema</option>
+                            <option value="Alto">Alta</option>
+                            <option value="Medio">Media</option>
+                            <option value="Bajo">Baja</option>
+                        </select>
                     </div>
                     <div className='info'>
                         <label>Duración (minutos):</label>
-                        <input type="number" value={tiempo} onChange={(e) => setTiempo(e.target.value)} />
+                        <input type="number" value={tiempo} onChange={(e) => setTiempo(e.target.value)} required />
                     </div>
                     <div className='info'>
                         <label>Distancia (km):</label>
-                        <input type="number" step="0.01" value={distancia} onChange={(e) => setDistancia(e.target.value)} />
+                        <input type="number" step="0.01" value={distancia} onChange={(e) => setDistancia(e.target.value)} required />
                     </div>
-                    <div className='info'>
-                        <label>Fotos (URLs separadas por comas):</label>
-                        <input type="text" value={fotos} onChange={(e) => setFotos(e.target.value)} />
-                    </div>
+                    {/* Componente FotoRuta para subir la foto de portada */}
+                    <FotoRuta onPortadaUpload={handlePortadaUpload} required/>
                     <button type="submit">Registrar</button>
                 </form>
                 {status && <p>{status}</p>}
