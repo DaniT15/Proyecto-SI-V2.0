@@ -17,26 +17,29 @@ export default function Calendario() {
 
   const CustomToolbar = (toolbar) => {
     const goToToday = () => {
-      toolbar.date.setMonth(new Date().getMonth());
-      toolbar.date.setFullYear(new Date().getFullYear());
-      toolbar.onNavigate('TODAY');
+      const today = new Date();
+      toolbar.onNavigate('TODAY', today);
     };
-
+  
     const goToBack = () => {
-      toolbar.onNavigate('PREV');
+      const newDate = new Date(toolbar.date);
+      newDate.setMonth(newDate.getMonth() - 1);
+      toolbar.onNavigate('PREV', newDate);
     };
-
+  
     const goToNext = () => {
-      toolbar.onNavigate('NEXT');
+      const newDate = new Date(toolbar.date);
+      newDate.setMonth(newDate.getMonth() + 1);
+      toolbar.onNavigate('NEXT', newDate);
     };
-
+  
     const label = () => {
       const date = moment(toolbar.date);
       return (
         <span>{date.format('MMMM YYYY')}</span>
       );
     };
-
+  
     return (
       <div className="rbc-toolbar">
         <span className="rbc-toolbar-label">{label()}</span>
@@ -46,6 +49,7 @@ export default function Calendario() {
       </div>
     );
   };
+  
 
   useEffect(() => {
     const obtenerActividades = async () => {

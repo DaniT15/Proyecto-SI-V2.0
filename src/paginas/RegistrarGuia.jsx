@@ -38,7 +38,7 @@ export default function RegistrarGuia() {
       })
       alert('Registro exitoso ✅');
 
-      navigate('/menuAdmin');
+      navigate('/verPerfil');
     } catch (err) {
       console.log(err)
       setError('Error al registrar el usuario ❌');

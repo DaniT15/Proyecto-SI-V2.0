@@ -11,7 +11,7 @@
 }
 
 .reservar-imagen {
-    max-width: 1000px;
+    max-width: 100%;
     height: auto;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -57,6 +57,18 @@
 .boton-de-reservar{
     width: 30%;
 }
+
+
+
+.event-details h2{
+    text-align: left;
+}
+
+
+
+
+
+
 
 
 @media (max-width: 768px) {
