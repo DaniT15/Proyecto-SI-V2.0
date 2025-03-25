@@ -1,4 +1,4 @@
-/* Estilo para el contenedor de la página */
+/* Fondo superior con imagen */
 .bg {
     background-image: url('../assets/conocenos-bg.png');
     background-size: cover;
@@ -16,64 +16,70 @@
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
-/* Contenedor de la información */
+/* Contenedor de bloques en fila */
 .div-info {
-    height: auto;
-    width: auto;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap; 
     justify-content: center;
-    align-items: center;
-    padding: 1vh 0;
+    align-items: flex-start;
+    gap: 2vw; 
+    padding: 4vh 2vw;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
 /* Estilo general de los bloques */
 .info {
-    display: flex;
-    flex-direction: column;
-    height: auto;
-    width: 1200px; /* Para que no se estire demasiado en pantallas grandes */
-    justify-content: center;
-    margin: 0vh 0;
-    padding: 5vh 2vw;
+    flex: 1 1 30%; 
+    min-width: 280px;
+    max-width: 350px;
+    padding: 3vh 2vw;
     border-radius: 25px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil para darle profundidad */
-    background-color: rgba(255, 255, 255, 0.9); /* Fondo semitransparente para mejorar contraste */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.9);
+    box-sizing: border-box;
 }
 
-/* Colores para los diferentes bloques */
+/* Colores específicos por bloque */
 .bloque1 {
-    background-color: #EFF0A6; /* Amarillo suave */
+    background-color: #EFF0A6;
 }
-
 .bloque2 {
-    background-color: #F0D5A6; /* Amarillo pálido */
+    background-color: #F0D5A6;
 }
-
 .bloque3 {
-    background-color: #F0BDA6; /* Amarillo anaranjado */
+    background-color: #F0BDA6;
 }
 
-/* Estilo para el logo */
+/* Logo debajo de los bloques */
+.logo-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 4vh 0;
+}
+
 .logo-conocenos {
-    margin-top: 5vh;
-    width: 250px;
+    width: 240px;
     height: auto;
-    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1)); /* Agregar sombra suave al logo */
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1));
 }
 
-/* Diseño responsivo */
-@media (max-width: 768px) {
-    .bg {
-        font-size: 6vh; /* Reducir el tamaño del texto en pantallas pequeñas */
+/* Responsivo */
+@media (max-width: 900px) {
+    .div-info {
+        flex-direction: column;
+        align-items: center;
     }
 
     .info {
-        width: 90vw;
-        padding: 4vh 3vw;
+        width: 90%;
+        max-width: 600px;
+        margin-bottom: 2vh;
     }
 
     .logo-conocenos {
-        width: 200px; /* Reducir tamaño del logo en pantallas pequeñas */
+        width: 180px;
     }
 }
