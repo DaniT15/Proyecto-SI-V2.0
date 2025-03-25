@@ -11,7 +11,7 @@ const auth = getAuth(app);
 
 export default function Header() {
     const contextUser = useContext(UserContext);
-    const { user, setUser, profile, logged } = contextUser;
+    const { user, profile, logged } = contextUser;
 
     return (
         <header className="header">
@@ -35,26 +35,22 @@ export default function Header() {
                     <p>GALERÍA</p>
                 </Link>
                 <Link to="/comentarios" className="header-titulos">
-                    <p>{!logged}FORO</p>
+                    <p>FORO</p>
                 </Link>
             </div>
             <div className="container-user">
                 {!logged ? (
-                    <Link to="/login" className="container-user">
+                    <Link to="/login" className="container-user-login">
                         <img src={userlogo} alt="usuario" className="user-logo" />
-                        <p>Iniciar Sesión</p>
                     </Link>
                 ) : (
-                    <div className="container-user-registered">
-                        {/* Aquí se muestra la foto de perfil si está disponible */}
-                        <Link to="/verPerfil">
-                            <img 
-                                src={profile?.foto_perfil || userlogo} 
-                                alt="usuario" 
-                                className="user-logo" 
-                            />
-                        </Link>
-                    </div>
+                    <Link to="/verPerfil" className="container-user">
+                        <img 
+                            src={profile?.foto_perfil || userlogo} 
+                            alt="usuario" 
+                            className="user-logo" 
+                        />
+                    </Link>
                 )}
             </div>
         </header>
