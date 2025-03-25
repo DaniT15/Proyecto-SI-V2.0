@@ -1,5 +1,5 @@
 .header {
-    width: 100vw;
+    width: 100%;
     height: 14vh;
     display: flex;
     justify-content: space-between;
@@ -7,6 +7,7 @@
     background-color: #FFB974;
     color: #1D3D4B;
     padding: 0 2rem;
+    box-sizing: border-box;
 }
 
 .container-pages {
@@ -32,17 +33,17 @@
 }
 
 .container-user {
-    width: 10vw;
     height: 12vh;
     display: flex;
     font-size: 2vh;
     color: #1D3D4B;
-    flex-direction: row;  /* Cambié de columna a fila */
-    justify-content: center;
+    flex-direction: row;
+    justify-content: flex-start;  
     align-items: center;
-    margin: 0 3vw 0 0;
-    padding: 2rem 1rem;
+    margin-left: 10vw;  
+    padding: 0;  
     text-decoration: none;
+    width: auto; 
 }
 
 .container-user:hover {
@@ -64,7 +65,6 @@
     padding: 1px;  
     background-color: #ffffff00;  
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    margin-right: 3px; /* Ajusté para reducir el espacio entre la imagen y el texto */
 }
 
 /* Títulos de encabezado */
