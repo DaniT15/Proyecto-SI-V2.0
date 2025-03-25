@@ -35,6 +35,7 @@ export default function Comentarios() {
         e.preventDefault();
         if (newComment.trim() === '') return;
 
+        // Asignar nombre de usuario (si está logueado o no)
         let userName = 'Usuario Anónimo';
         if (profile) {
             userName = profile?.displayName || profile?.name || profile?.email.split('@')[0] || 'Usuario Anónimo';
@@ -48,7 +49,7 @@ export default function Comentarios() {
             });
             setNewComment('');
         } catch (error) {
-            console.error("Error adding document: ", error);
+            console.error("Error al agregar el comentario: ", error);
         }
     };
 
