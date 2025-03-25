@@ -17,17 +17,20 @@ export default function Calendario() {
 
   const CustomToolbar = (toolbar) => {
     const goToToday = () => {
-      const today = new Date();
-      toolbar.onNavigate('TODAY', today);
+      toolbar.date.setMonth(new Date().getMonth());
+      toolbar.date.setFullYear(new Date().getFullYear());
+      toolbar.onNavigate('TODAY');
     };
   
     const goToBack = () => {
+      toolbar.onNavigate('PREV');
       const newDate = new Date(toolbar.date);
       newDate.setMonth(newDate.getMonth() - 1);
       toolbar.onNavigate('PREV', newDate);
     };
   
     const goToNext = () => {
+      toolbar.onNavigate('NEXT');
       const newDate = new Date(toolbar.date);
       newDate.setMonth(newDate.getMonth() + 1);
       toolbar.onNavigate('NEXT', newDate);

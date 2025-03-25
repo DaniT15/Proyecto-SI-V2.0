@@ -107,7 +107,6 @@ export default function CalendarioReserva({ rutaId }) {
                 <div className="event-details">
                     <h2>{selectedEvent.title}</h2>
                     <p><strong>Fecha:</strong> {moment(selectedEvent.start).format('DD/MM/YYYY')}</p>
-                    <p>{selectedEvent.descripcion}</p>
                     <Link to="/pagos" className='boton-de-reservar'>
                         <button  onClick={handleReservar}>Reservar</button>
                     </Link>
